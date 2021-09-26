@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'corsheaders',
     'drf_yasg',
     'afisha',
-    'api',
+    'main',
     'account',
+    'profile',
+    'read_n_watch',
     'common',
     'admin_honeypot',
     'martor',
@@ -47,8 +49,8 @@ INSTALLED_APPS = [
 ]
 
 CRON_CLASSES = [
-    'api.cron.EventCanceled',
-    'api.cron.EventReminder',
+    'afisha.cron.EventCanceled',
+    'afisha.cron.EventReminder',
 ]
 
 MIDDLEWARE = [

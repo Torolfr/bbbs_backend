@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.validators import FileExtensionValidator
-from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
 
 
@@ -16,13 +15,4 @@ def file_size_validator(value):
         raise ValidationError(
             _('Файл не должен быть больше '
               f'{settings.MAX_IMAGE_UPLOAD_SIZE_MB}М.')
-        )
-
-
-def year_validator(value):
-    if value > now().year:
-        raise ValidationError(
-            '%(value)s год больше текущего',
-            code='invalid',
-            params={'value': value},
         )

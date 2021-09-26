@@ -5,6 +5,15 @@ from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
 
 
+def year_validator(value):
+    if value > now().year:
+        raise ValidationError(
+            '%(value)s год больше текущего',
+            code='invalid',
+            params={'value': value},
+        )
+
+
 def image_extension_validator(value):
     return FileExtensionValidator(
         allowed_extensions=settings.IMAGE_EXTENSIONS)(value)
@@ -16,13 +25,4 @@ def file_size_validator(value):
         raise ValidationError(
             _('Файл не должен быть больше '
               f'{settings.MAX_IMAGE_UPLOAD_SIZE_MB}М.')
-        )
-
-
-def year_validator(value):
-    if value > now().year:
-        raise ValidationError(
-            '%(value)s год больше текущего',
-            code='invalid',
-            params={'value': value},
         )

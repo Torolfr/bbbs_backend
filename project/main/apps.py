@@ -2,7 +2,7 @@ from django.apps import AppConfig
 from django.utils.translation import gettext_lazy as _
 
 
-class AfishaConfig(AppConfig):
+class MainConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'afisha'
-    verbose_name = _(' Календарь')
+    name = 'main'
+    verbose_name = _(' Контент сайта')

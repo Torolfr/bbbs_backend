@@ -3,6 +3,8 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from common.models import City, Region
+
 
 class CustomUser(AbstractUser):
     email = models.EmailField(
@@ -10,7 +12,7 @@ class CustomUser(AbstractUser):
         blank=False,
     )
     city = models.ForeignKey(
-        'api.City',
+        City,
         verbose_name=_('Город'),
         related_name='users',
         on_delete=models.SET_NULL,
@@ -21,7 +23,7 @@ class CustomUser(AbstractUser):
         )
     )
     region = models.ForeignKey(
-        'api.Region',
+        Region,
         verbose_name=_('Регион'),
         related_name='users',
         on_delete=models.SET_NULL,
@@ -39,7 +41,7 @@ class CustomUser(AbstractUser):
         )
     )
     curator = models.ForeignKey(
-        to='CustomUser',
+        'CustomUser',
         verbose_name=_('Куратор'),
         related_name='mentors',
         on_delete=models.SET_NULL,

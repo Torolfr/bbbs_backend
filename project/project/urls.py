@@ -23,8 +23,12 @@ urlpatterns = [
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('management/', admin.site.urls),
     path('martor/', include('martor.urls')),
-    path('api/', include('api.urls', namespace='api')),
+    path('api/', include('main.urls', namespace='main')),
+    path('api/', include('afisha.urls', namespace='afisha')),
     path('api/', include('account.urls', namespace='account')),
+    path('api/', include('common.urls', namespace='common')),
+    path('api/', include('profile.urls', namespace='profile')),
+    path('api/', include('read_n_watch.urls', namespace='read_n_watch')),
     path(
         'swagger/',
         schema_view.with_ui('swagger', cache_timeout=0),
