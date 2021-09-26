@@ -10,7 +10,7 @@ services:
     env_file:
       - ./.env
   backend:
-    image: hlystovea/bbbs_back:latest
+    build: .
     restart: always
     command: gunicorn project.wsgi --bind 0.0.0.0:8000
     ports:
@@ -22,25 +22,18 @@ services:
       - db
     env_file:
       - ./.env
-  frontend:
-    image: hlystovea/bbbs_front:latest
-    volumes:
-      - react_build:/build
   nginx:
     image: nginx:latest
     ports:
       - '80:80'
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - react_build:/usr/share/nginx/html
       - static_value:/var/html/static/
       - media_value:/var/html/media/
     depends_on:
       - backend
-      - frontend
 
 volumes:
   postgres_bbbs:
-  react_build:
   static_value:
   media_value:
