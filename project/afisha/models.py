@@ -172,4 +172,4 @@ class EventMailing(models.Model):
     class Meta:
         ordering = ('-date_sending',)
         verbose_name = _('Рассылка уведомлений')
-        verbose_name_plural = _('Рассылки уведомлений')
+        verbose_name_plural = _('Рассылка уведомлений')
