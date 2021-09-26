@@ -22,18 +22,28 @@ services:
       - db
     env_file:
       - ./.env
+  frontend:
+    build:
+      context: ../bbbs_frontend
+      dockerfile: Dockerfile
+    volumes:
+      - react_build:/build
+    depends_on:
+      - backend
   nginx:
     image: nginx:latest
     ports:
       - '80:80'
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - react_build:/usr/share/nginx/html
       - static_value:/var/html/static/
       - media_value:/var/html/media/
     depends_on:
-      - backend
+      - frontend
 
 volumes:
   postgres_bbbs:
   static_value:
   media_value:
+  react_build:
