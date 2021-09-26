@@ -67,3 +67,30 @@ class Diary(models.Model):
 
     def __str__(self):
         return self.place
+
+
+class DiaryMailing(models.Model):
+    diary = models.ForeignKey(
+        Diary,
+        verbose_name=_('Дневник'),
+        related_name='mailings',
+        on_delete=models.CASCADE,
+    )
+    mentor = models.ForeignKey(
+        User,
+        verbose_name=_('Наставник'),
+        related_name='diary_mailings',
+        on_delete=models.CASCADE,
+    )
+    email = models.EmailField(
+        verbose_name=_('Email куратора'),
+    )
+    date_sending = models.DateTimeField(
+        verbose_name=_('Время отправки'),
+        auto_now_add=True,
+    )
+
+    class Meta:
+        ordering = ('-date_sending',)
+        verbose_name = _('Рассылка записей дневников')
+        verbose_name_plural = _('Рассылка записей дневников')

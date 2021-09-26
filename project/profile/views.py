@@ -12,7 +12,7 @@ from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from .models import Diary
+from .models import Diary, DiaryMailing
 from .permissions import IsOwner
 from .serializers import DiarySerializer, ProfileSerializer
 
@@ -79,6 +79,11 @@ class DiaryViewSet(viewsets.ModelViewSet):
                 message,
                 status=status.HTTP_503_SERVICE_UNAVAILABLE
             )
+        DiaryMailing.objects.create(
+            diary=diary,
+            mentor=mentor,
+            email=mentor.curator.email,
+        )
         diary.sent_to_curator = True
         diary.save()
         message = {'diary': _('Запись дневника отправлена куратору.')}

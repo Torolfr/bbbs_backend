@@ -5,7 +5,7 @@ from django.forms import Textarea, TextInput
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
-from .models import Diary
+from .models import Diary, DiaryMailing
 
 User = get_user_model()
 
@@ -37,3 +37,13 @@ class DiaryAdmin(ImageTagField, MixinAdmin):
                     'mark', 'sent_to_curator', 'image_tag')
     search_fields = ('place', 'description')
     list_filter = ('mark', )
+
+
+@admin.register(DiaryMailing)
+class EventMailingAdmin(MixinAdmin):
+    list_display = ('id', 'diary', 'mentor', 'email', 'get_date_sending')
+    search_fields = ('diary', 'mentor', 'email')
+
+    @admin.display(description=_('Время отправки'))
+    def get_date_sending(self, obj):
+        return obj.date_sending.strftime('%d.%m.%Y %H:%M:%S')

@@ -5,4 +5,4 @@ from django.utils.translation import gettext_lazy as _
 class AfishaConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'afisha'
-    verbose_name = _(' Календарь')
+    verbose_name = _('  Календарь')
