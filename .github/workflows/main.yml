@@ -44,7 +44,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: copy_configs
+    needs: copy_files
     steps:
       - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
