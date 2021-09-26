@@ -39,7 +39,7 @@ jobs:
           host: ${{  secrets.HOST }}
           username: ${{ secrets.USER  }}
           password: ${{ secrets.PASSWORD }}
-          source: "*"
+          source: "*,!.git,!.github"
           target: "~/bbbs_backend"
           overwrite: true
 
