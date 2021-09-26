@@ -20,7 +20,7 @@ from .serializers import (HistoryListSerializer, HistorySerializer,
                           SearchResultSerializer)
 from afisha.models import Event
 from common.views import GetListPostPutMixin, TagMixin
-from read_n_watch.models import Article, Book, Video, Movie
+from read_n_watch.models import Article, Book, Movie, Video
 
 
 class HistoryViewSet(ReadOnlyModelViewSet):

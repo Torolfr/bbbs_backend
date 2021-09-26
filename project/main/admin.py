@@ -110,12 +110,3 @@ class RightAdmin(MixinAdmin):
         if description is not None:
             return f'{description[:50]}..'
         return description
-
-
-
-
-
-
-
-
-
