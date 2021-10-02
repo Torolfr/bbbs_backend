@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AdminPasswordChangeForm, UsernameField
 from django.core.mail import send_mail
 from django.forms import EmailField
+from django.template.loader import render_to_string
 
 User = get_user_model()
 
@@ -22,18 +23,25 @@ class CustomUserCreationForm(forms.ModelForm):
             self.fields[self._meta.model.USERNAME_FIELD].widget.attrs['autofocus'] = True # noqa E501
 
     def save(self, commit=True):
-        """Save the new user and send mail to user with login and password"""
         user = super().save(commit=False)
         password = User.objects.make_random_password()
         email = self.cleaned_data['email']
         login = self.cleaned_data['username']
         user.set_password(password)
+        message = render_to_string(
+            'account/email_user_creation.html',
+            {
+                'login': login,
+                'password': password,
+            },
+        )
         send_mail(
             subject=settings.USER_CREATION_SUBJECT,
-            message=settings.USER_CREATION_MESSAGE % (login, password),
+            message=message,
             from_email=None,
             recipient_list=[email],
-            fail_silently=True
+            fail_silently=True,
+            html_message=message,
         )
         if commit:
             user.save()
@@ -46,11 +54,19 @@ class CustomAdminPasswordChangeForm(AdminPasswordChangeForm):
         """Save the new password and send mail to user with the new password"""
         password = self.cleaned_data['password1']
         self.user.set_password(password)
+        message = render_to_string(
+            'account/email_password_change.html',
+            {
+                'login': self.user.username,
+                'password': password,
+            },
+        )
         User.email_user(
             self.user,
             subject=settings.USER_PASSWORD_CHANGE_SUBJECT,
-            message=settings.USER_PASSWORD_CHANGE_MESSAGE % password,
-            fail_silently=True
+            message=message,
+            fail_silently=True,
+            html_message=message,
         )
         if commit:
             self.user.save()

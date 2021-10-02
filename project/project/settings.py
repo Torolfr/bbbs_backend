@@ -256,9 +256,5 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_SEND_TIMEOUT = int(ENV.get('EMAIL_SEND_TIMEOUT', 10))
 
 USER_CREATION_SUBJECT = ENV.get('USER_CREATION_SUBJECT', _('Регистрация на сайте BBBS'))
-USER_CREATION_MESSAGE = ENV.get('USER_CREATION_MESSAGE', _('Вас зарегестрировали на сайте BBBS. Используйте логин %s и пароль %s для входа на сайт.'))
-
 USER_PASSWORD_CHANGE_SUBJECT = ENV.get('USER_PASSWORD_CHANGE_SUBJECT', _('Изменение пароля для сайта BBBS'))
-USER_PASSWORD_CHANGE_MESSAGE = ENV.get('USER_PASSWORD_CHANGE_MESSAGE', _('Ваш пароль для BBBS был изменён. Используйте новый пароль %s для входа на сайт.'))
-
 SEND_DIARY_TO_CURATOR_SUBJECT = ENV.get('SEND_DIARY_TO_CURATOR_SUBJECT', _('%s: запись в дневнике от %s'))

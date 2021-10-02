@@ -36,7 +36,7 @@ class EventCanceled(CronJobBase):
             ).exists():
                 try:
                     message = render_to_string(
-                        'api/email_event_canceled.html',
+                        'afisha/email_event_canceled.html',
                         {'event': participant.event},
                     )
                     send_mail(
@@ -83,7 +83,7 @@ class EventReminder(CronJobBase):
             ).exists():
                 try:
                     message = render_to_string(
-                        'api/email_event_reminder.html',
+                        'afisha/email_event_reminder.html',
                         {'event': participant.event},
                     )
                     send_mail(
