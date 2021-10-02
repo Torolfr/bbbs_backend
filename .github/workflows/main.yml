@@ -54,6 +54,8 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd bbbs_backend
+            sudo docker-compose stop
+            sudo docker system prune -f
             touch .env
             echo SECRET_KEY=${{ secrets.SECRET_KEY }} > .env
             echo POSTGRES_DB=${{ secrets.POSTGRES_DB }} >> .env
@@ -64,6 +66,7 @@ jobs:
             echo EMAIL_HOST=${{ secrets.EMAIL_HOST }} >> .env
             echo EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }} >> .env
             echo EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASSWORD }} >> .env
+            sudo docker-compose up -d --build
 
   send_message:
     runs-on: ubuntu-latest
