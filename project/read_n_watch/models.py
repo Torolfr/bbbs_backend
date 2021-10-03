@@ -302,7 +302,7 @@ class Video(models.Model, ImageFromUrlMixin):
         verbose_name=_('Ресурсная группа'),
         default=False,
         help_text=_(
-            'Видео с этой меткой не будут показаны'
+            'Видео с этой меткой не будут показаны '
             'не авторизованным пользователям.'
         ),
     )
