@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
@@ -67,6 +68,14 @@ class Diary(models.Model):
 
     def __str__(self):
         return self.place
+
+    def clean(self):
+        errors = {}
+        if self.date > now().date():
+            errors['date'] = ValidationError(
+                _('Ваша встреча не могла быть в будущем'))
+        if errors:
+            raise ValidationError(errors)
 
 
 class DiaryMailing(models.Model):
