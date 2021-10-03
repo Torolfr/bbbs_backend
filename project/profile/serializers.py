@@ -33,6 +33,14 @@ class DiarySerializer(serializers.ModelSerializer):
             )
         ]
 
+    def validate_date(self, value):
+        if value > now().date():
+            return serializers.ValidationError(
+                'Проверьте дату, в дневник можно добавить '
+                'только состоявшиеся встречи.'
+            )
+        return value
+
 
 class ProfileSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(source='pk', read_only=True)
