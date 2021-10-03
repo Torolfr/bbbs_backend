@@ -33,13 +33,12 @@ class DiarySerializer(serializers.ModelSerializer):
             )
         ]
 
-    def validate_date(self, value):
-        if value > now().date():
-            return serializers.ValidationError(
-                'Проверьте дату, в дневник можно добавить '
-                'только состоявшиеся встречи.'
+    def validate(self, data):
+        if data['date'] > now().date():
+            raise serializers.ValidationError(
+                {'date': _('Ваша встреча не могла быть в будущем')}
             )
-        return value
+        return data
 
 
 class ProfileSerializer(serializers.ModelSerializer):
