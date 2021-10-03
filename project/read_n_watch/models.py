@@ -63,7 +63,7 @@ class Article(models.Model, ImageFromUrlMixin):
         verbose_name=_('Закрепить'),
         default=False,
         help_text=_(
-            'Статья с этой меткой будет отображаться'
+            'Статья с этой меткой будет отображаться '
             'в полноразмерном формате вверху страницы.'
         ),
     )
@@ -294,7 +294,7 @@ class Video(models.Model, ImageFromUrlMixin):
         verbose_name=_('Закрепить'),
         default=False,
         help_text=_(
-            'Видео с этой меткой будет отображаться'
+            'Видео с этой меткой будет отображаться '
             'в полноразмерном формате вверху страницы.'
         ),
     )
