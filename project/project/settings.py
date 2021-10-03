@@ -134,7 +134,7 @@ PHONENUMBER_DEFAULT_REGION = 'RU'
 
 LANGUAGE_CODE = ENV.get('LANGUAGE_CODE', default='ru-Ru')
 
-TIME_ZONE = ENV.get('TIME_ZONE', default='UTC')
+TIME_ZONE = ENV.get('TIME_ZONE', default='Europe/Moscow')
 
 USE_I18N = True
 
