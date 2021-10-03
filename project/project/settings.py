@@ -52,6 +52,7 @@ CRON_CLASSES = [
     'afisha.cron.EventCanceled',
     'afisha.cron.EventReminder',
 ]
+DJANGO_CRON_DELETE_LOGS_OLDER_THAN = 100
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',

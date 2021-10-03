@@ -1,0 +1,1 @@
+*/2 * * * *   root    /bin/bash -c 'docker exec -t bbbs_backend_backend_1 python manage.py runcrons'
