@@ -236,7 +236,7 @@ MARTOR_ENABLE_CONFIGS = {
 }
 
 MARTOR_TOOLBAR_BUTTONS = [
-    'bold', 'italic', 'horizontal', 'heading', 'blockquote',
+    'bold', 'italic', 'heading', 'blockquote',
     'unordered-list', 'link', 'emoji', 'toggle-maximize', 'help',
 ]
 
