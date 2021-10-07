@@ -37,7 +37,7 @@ class MixinAdmin(admin.ModelAdmin):
 
 class HistoryImageInline(admin.TabularInline):
     model = HistoryImage
-    min_num = 4
+    min_num = 3
     extra = 0
 
 

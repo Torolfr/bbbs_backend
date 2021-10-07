@@ -1,4 +1,5 @@
 # BBBS
+![workflow badge](https://github.com/bbbsrussia/bbbs_backend/actions/workflows/main.yml/badge.svg)
 
 ### Описание
 Сайт предназначен для помощи наставникам в работе с детьми.
