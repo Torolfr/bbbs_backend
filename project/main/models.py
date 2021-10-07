@@ -41,7 +41,8 @@ class History(models.Model, ImageFromUrlMixin):
     )
     image_url = models.URLField(
         verbose_name=_('Ссылка на изображение'),
-        max_length=192,
+        blank=True,
+        null=True,
         help_text=_(
             'Альтернативный способ загрузки изображения. Приоритет у файла.'
         ),

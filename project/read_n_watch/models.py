@@ -149,6 +149,8 @@ class Catalog(models.Model, ImageFromUrlMixin):
     )
     image_url = models.URLField(
         verbose_name=_('Ссылка на изображение'),
+        blank=True,
+        null=True,
         max_length=192,
         help_text=_(
             'Альтернативный способ загрузки изображения. Приоритет у файла.'
