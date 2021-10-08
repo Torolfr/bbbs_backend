@@ -163,18 +163,21 @@ class Place(models.Model, ImageFromUrlMixin):
     activity_type = models.ForeignKey(
         ActivityType,
         blank=True,
+        null=True,
         verbose_name=_('Вид активности'),
         related_name='places',
         on_delete=models.PROTECT,
     )
     gender = models.CharField(
         blank=True,
+        null=True,
         verbose_name=_('Пол ребёнка'),
         max_length=6,
         choices=(('male', _('Мальчик')), ('female', _('Девочка'))),
     )
     age = models.SmallIntegerField(
         blank=True,
+        null=True,
         verbose_name=_('Возраст ребёнка'),
         validators=[
             validators.MinValueValidator(8),
@@ -184,6 +187,7 @@ class Place(models.Model, ImageFromUrlMixin):
     age_restriction = models.CharField(
         verbose_name=_('Целевой возраст'),
         max_length=50,
+        default='any',
         choices=(
             ('8-10', '8-10'),
             ('11-13', '11-13'),
